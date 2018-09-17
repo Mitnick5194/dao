@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ajie.dbMapper.mapper.TbBlogMapper" >
+  <resultMap id="BaseResultMap" type="com.ajie.dbMapper.pojo.TbBlog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="lastActive" property="lastactive" jdbcType="TIMESTAMP" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="commentNum" property="commentnum" jdbcType="INTEGER" />
+    <result column="praiseNum" property="praisenum" jdbcType="INTEGER" />
+    <result column="collectNum" property="collectnum" jdbcType="INTEGER" />
+    <result column="readNum" property="readnum" jdbcType="INTEGER" />
+    <result column="labelStrs" property="labelstrs" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.ajie.dbMapper.pojo.TbBlog" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARBINARY" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, userId, createTime, lastActive, title, commentNum, praiseNum, collectNum, readNum, 
+    labelStrs, state
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.ajie.dbMapper.pojo.TbBlogExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_blog
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ajie.dbMapper.pojo.TbBlogExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_blog
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_blog
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_blog
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ajie.dbMapper.pojo.TbBlogExample" >
+    delete from tb_blog
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ajie.dbMapper.pojo.TbBlog" >
+    insert into tb_blog (id, userId, createTime, 
+      lastActive, title, commentNum, 
+      praiseNum, collectNum, readNum, 
+      labelStrs, state, content
+      )
+    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{lastactive,jdbcType=TIMESTAMP}, #{title,jdbcType=VARCHAR}, #{commentnum,jdbcType=INTEGER}, 
+      #{praisenum,jdbcType=INTEGER}, #{collectnum,jdbcType=INTEGER}, #{readnum,jdbcType=INTEGER}, 
+      #{labelstrs,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, #{content,jdbcType=LONGVARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ajie.dbMapper.pojo.TbBlog" >
+    insert into tb_blog
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="lastactive != null" >
+        lastActive,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="commentnum != null" >
+        commentNum,
+      </if>
+      <if test="praisenum != null" >
+        praiseNum,
+      </if>
+      <if test="collectnum != null" >
+        collectNum,
+      </if>
+      <if test="readnum != null" >
+        readNum,
+      </if>
+      <if test="labelstrs != null" >
+        labelStrs,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastactive != null" >
+        #{lastactive,jdbcType=TIMESTAMP},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="commentnum != null" >
+        #{commentnum,jdbcType=INTEGER},
+      </if>
+      <if test="praisenum != null" >
+        #{praisenum,jdbcType=INTEGER},
+      </if>
+      <if test="collectnum != null" >
+        #{collectnum,jdbcType=INTEGER},
+      </if>
+      <if test="readnum != null" >
+        #{readnum,jdbcType=INTEGER},
+      </if>
+      <if test="labelstrs != null" >
+        #{labelstrs,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ajie.dbMapper.pojo.TbBlogExample" resultType="java.lang.Integer" >
+    select count(*) from tb_blog
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_blog
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.userid != null" >
+        userId = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastactive != null" >
+        lastActive = #{record.lastactive,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.title != null" >
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.commentnum != null" >
+        commentNum = #{record.commentnum,jdbcType=INTEGER},
+      </if>
+      <if test="record.praisenum != null" >
+        praiseNum = #{record.praisenum,jdbcType=INTEGER},
+      </if>
+      <if test="record.collectnum != null" >
+        collectNum = #{record.collectnum,jdbcType=INTEGER},
+      </if>
+      <if test="record.readnum != null" >
+        readNum = #{record.readnum,jdbcType=INTEGER},
+      </if>
+      <if test="record.labelstrs != null" >
+        labelStrs = #{record.labelstrs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null" >
+        state = #{record.state,jdbcType=INTEGER},
+      </if>
+      <if test="record.content != null" >
+        content = #{record.content,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update tb_blog
+    set id = #{record.id,jdbcType=INTEGER},
+      userId = #{record.userid,jdbcType=INTEGER},
+      createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      lastActive = #{record.lastactive,jdbcType=TIMESTAMP},
+      title = #{record.title,jdbcType=VARCHAR},
+      commentNum = #{record.commentnum,jdbcType=INTEGER},
+      praiseNum = #{record.praisenum,jdbcType=INTEGER},
+      collectNum = #{record.collectnum,jdbcType=INTEGER},
+      readNum = #{record.readnum,jdbcType=INTEGER},
+      labelStrs = #{record.labelstrs,jdbcType=VARCHAR},
+      state = #{record.state,jdbcType=INTEGER},
+      content = #{record.content,jdbcType=LONGVARBINARY}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_blog
+    set id = #{record.id,jdbcType=INTEGER},
+      userId = #{record.userid,jdbcType=INTEGER},
+      createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      lastActive = #{record.lastactive,jdbcType=TIMESTAMP},
+      title = #{record.title,jdbcType=VARCHAR},
+      commentNum = #{record.commentnum,jdbcType=INTEGER},
+      praiseNum = #{record.praisenum,jdbcType=INTEGER},
+      collectNum = #{record.collectnum,jdbcType=INTEGER},
+      readNum = #{record.readnum,jdbcType=INTEGER},
+      labelStrs = #{record.labelstrs,jdbcType=VARCHAR},
+      state = #{record.state,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ajie.dbMapper.pojo.TbBlog" >
+    update tb_blog
+    <set >
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastactive != null" >
+        lastActive = #{lastactive,jdbcType=TIMESTAMP},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="commentnum != null" >
+        commentNum = #{commentnum,jdbcType=INTEGER},
+      </if>
+      <if test="praisenum != null" >
+        praiseNum = #{praisenum,jdbcType=INTEGER},
+      </if>
+      <if test="collectnum != null" >
+        collectNum = #{collectnum,jdbcType=INTEGER},
+      </if>
+      <if test="readnum != null" >
+        readNum = #{readnum,jdbcType=INTEGER},
+      </if>
+      <if test="labelstrs != null" >
+        labelStrs = #{labelstrs,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ajie.dbMapper.pojo.TbBlog" >
+    update tb_blog
+    set userId = #{userid,jdbcType=INTEGER},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      lastActive = #{lastactive,jdbcType=TIMESTAMP},
+      title = #{title,jdbcType=VARCHAR},
+      commentNum = #{commentnum,jdbcType=INTEGER},
+      praiseNum = #{praisenum,jdbcType=INTEGER},
+      collectNum = #{collectnum,jdbcType=INTEGER},
+      readNum = #{readnum,jdbcType=INTEGER},
+      labelStrs = #{labelstrs,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER},
+      content = #{content,jdbcType=LONGVARBINARY}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ajie.dbMapper.pojo.TbBlog" >
+    update tb_blog
+    set userId = #{userid,jdbcType=INTEGER},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      lastActive = #{lastactive,jdbcType=TIMESTAMP},
+      title = #{title,jdbcType=VARCHAR},
+      commentNum = #{commentnum,jdbcType=INTEGER},
+      praiseNum = #{praisenum,jdbcType=INTEGER},
+      collectNum = #{collectnum,jdbcType=INTEGER},
+      readNum = #{readnum,jdbcType=INTEGER},
+      labelStrs = #{labelstrs,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
