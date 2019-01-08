@@ -285,66 +285,6 @@ public class TbBlogExample {
             return (Criteria) this;
         }
 
-        public Criteria andLastactiveIsNull() {
-            addCriterion("lastActive is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastactiveIsNotNull() {
-            addCriterion("lastActive is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastactiveEqualTo(Date value) {
-            addCriterion("lastActive =", value, "lastactive");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastactiveNotEqualTo(Date value) {
-            addCriterion("lastActive <>", value, "lastactive");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastactiveGreaterThan(Date value) {
-            addCriterion("lastActive >", value, "lastactive");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastactiveGreaterThanOrEqualTo(Date value) {
-            addCriterion("lastActive >=", value, "lastactive");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastactiveLessThan(Date value) {
-            addCriterion("lastActive <", value, "lastactive");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastactiveLessThanOrEqualTo(Date value) {
-            addCriterion("lastActive <=", value, "lastactive");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastactiveIn(List<Date> values) {
-            addCriterion("lastActive in", values, "lastactive");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastactiveNotIn(List<Date> values) {
-            addCriterion("lastActive not in", values, "lastactive");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastactiveBetween(Date value1, Date value2) {
-            addCriterion("lastActive between", value1, value2, "lastactive");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastactiveNotBetween(Date value1, Date value2) {
-            addCriterion("lastActive not between", value1, value2, "lastactive");
-            return (Criteria) this;
-        }
-
         public Criteria andTitleIsNull() {
             addCriterion("title is null");
             return (Criteria) this;
@@ -415,63 +355,73 @@ public class TbBlogExample {
             return (Criteria) this;
         }
 
-        public Criteria andCommentnumIsNull() {
-            addCriterion("commentNum is null");
+        public Criteria andContentIsNull() {
+            addCriterion("content is null");
             return (Criteria) this;
         }
 
-        public Criteria andCommentnumIsNotNull() {
-            addCriterion("commentNum is not null");
+        public Criteria andContentIsNotNull() {
+            addCriterion("content is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCommentnumEqualTo(Integer value) {
-            addCriterion("commentNum =", value, "commentnum");
+        public Criteria andContentEqualTo(String value) {
+            addCriterion("content =", value, "content");
             return (Criteria) this;
         }
 
-        public Criteria andCommentnumNotEqualTo(Integer value) {
-            addCriterion("commentNum <>", value, "commentnum");
+        public Criteria andContentNotEqualTo(String value) {
+            addCriterion("content <>", value, "content");
             return (Criteria) this;
         }
 
-        public Criteria andCommentnumGreaterThan(Integer value) {
-            addCriterion("commentNum >", value, "commentnum");
+        public Criteria andContentGreaterThan(String value) {
+            addCriterion("content >", value, "content");
             return (Criteria) this;
         }
 
-        public Criteria andCommentnumGreaterThanOrEqualTo(Integer value) {
-            addCriterion("commentNum >=", value, "commentnum");
+        public Criteria andContentGreaterThanOrEqualTo(String value) {
+            addCriterion("content >=", value, "content");
             return (Criteria) this;
         }
 
-        public Criteria andCommentnumLessThan(Integer value) {
-            addCriterion("commentNum <", value, "commentnum");
+        public Criteria andContentLessThan(String value) {
+            addCriterion("content <", value, "content");
             return (Criteria) this;
         }
 
-        public Criteria andCommentnumLessThanOrEqualTo(Integer value) {
-            addCriterion("commentNum <=", value, "commentnum");
+        public Criteria andContentLessThanOrEqualTo(String value) {
+            addCriterion("content <=", value, "content");
             return (Criteria) this;
         }
 
-        public Criteria andCommentnumIn(List<Integer> values) {
-            addCriterion("commentNum in", values, "commentnum");
+        public Criteria andContentLike(String value) {
+            addCriterion("content like", value, "content");
             return (Criteria) this;
         }
 
-        public Criteria andCommentnumNotIn(List<Integer> values) {
-            addCriterion("commentNum not in", values, "commentnum");
+        public Criteria andContentNotLike(String value) {
+            addCriterion("content not like", value, "content");
             return (Criteria) this;
         }
 
-        public Criteria andCommentnumBetween(Integer value1, Integer value2) {
-            addCriterion("commentNum between", value1, value2, "commentnum");
+        public Criteria andContentIn(List<String> values) {
+            addCriterion("content in", values, "content");
             return (Criteria) this;
         }
 
-        public Criteria andCommentnumNotBetween(Integer value1, Integer value2) {
-            addCriterion("commentNum not between", value1, value2, "commentnum");
+        public Criteria andContentNotIn(List<String> values) {
+            addCriterion("content not in", values, "content");
+            return (Criteria) this;
+        }
+
+        public Criteria andContentBetween(String value1, String value2) {
+            addCriterion("content between", value1, value2, "content");
+            return (Criteria) this;
+        }
+
+        public Criteria andContentNotBetween(String value1, String value2) {
+            addCriterion("content not between", value1, value2, "content");
             return (Criteria) this;
         }
 
@@ -782,6 +732,126 @@ public class TbBlogExample {
 
         public Criteria andStateNotBetween(Integer value1, Integer value2) {
             addCriterion("state not between", value1, value2, "state");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastmodifydateIsNull() {
+            addCriterion("lastModifyDate is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastmodifydateIsNotNull() {
+            addCriterion("lastModifyDate is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastmodifydateEqualTo(Date value) {
+            addCriterion("lastModifyDate =", value, "lastmodifydate");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastmodifydateNotEqualTo(Date value) {
+            addCriterion("lastModifyDate <>", value, "lastmodifydate");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastmodifydateGreaterThan(Date value) {
+            addCriterion("lastModifyDate >", value, "lastmodifydate");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastmodifydateGreaterThanOrEqualTo(Date value) {
+            addCriterion("lastModifyDate >=", value, "lastmodifydate");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastmodifydateLessThan(Date value) {
+            addCriterion("lastModifyDate <", value, "lastmodifydate");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastmodifydateLessThanOrEqualTo(Date value) {
+            addCriterion("lastModifyDate <=", value, "lastmodifydate");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastmodifydateIn(List<Date> values) {
+            addCriterion("lastModifyDate in", values, "lastmodifydate");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastmodifydateNotIn(List<Date> values) {
+            addCriterion("lastModifyDate not in", values, "lastmodifydate");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastmodifydateBetween(Date value1, Date value2) {
+            addCriterion("lastModifyDate between", value1, value2, "lastmodifydate");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastmodifydateNotBetween(Date value1, Date value2) {
+            addCriterion("lastModifyDate not between", value1, value2, "lastmodifydate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentnumIsNull() {
+            addCriterion("commentNum is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentnumIsNotNull() {
+            addCriterion("commentNum is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentnumEqualTo(Integer value) {
+            addCriterion("commentNum =", value, "commentnum");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentnumNotEqualTo(Integer value) {
+            addCriterion("commentNum <>", value, "commentnum");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentnumGreaterThan(Integer value) {
+            addCriterion("commentNum >", value, "commentnum");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentnumGreaterThanOrEqualTo(Integer value) {
+            addCriterion("commentNum >=", value, "commentnum");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentnumLessThan(Integer value) {
+            addCriterion("commentNum <", value, "commentnum");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentnumLessThanOrEqualTo(Integer value) {
+            addCriterion("commentNum <=", value, "commentnum");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentnumIn(List<Integer> values) {
+            addCriterion("commentNum in", values, "commentnum");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentnumNotIn(List<Integer> values) {
+            addCriterion("commentNum not in", values, "commentnum");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentnumBetween(Integer value1, Integer value2) {
+            addCriterion("commentNum between", value1, value2, "commentnum");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentnumNotBetween(Integer value1, Integer value2) {
+            addCriterion("commentNum not between", value1, value2, "commentnum");
             return (Criteria) this;
         }
     }

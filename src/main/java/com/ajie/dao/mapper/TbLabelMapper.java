@@ -2,9 +2,7 @@ package com.ajie.dao.mapper;
 
 import com.ajie.dao.pojo.TbLabel;
 import com.ajie.dao.pojo.TbLabelExample;
-
 import java.util.List;
-
 import org.apache.ibatis.annotations.Param;
 
 public interface TbLabelMapper {

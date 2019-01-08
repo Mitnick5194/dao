@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ajie.dbMapper.mapper.TbCommentMapper" >
-  <resultMap id="BaseResultMap" type="com.ajie.dbMapper.pojo.TbComment" >
+<mapper namespace="com.ajie.dao.mapper.TbCommentMapper" >
+  <resultMap id="BaseResultMap" type="com.ajie.dao.pojo.TbComment" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="blogId" property="blogid" jdbcType="INTEGER" />
     <result column="parentId" property="parentid" jdbcType="INTEGER" />
     <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
     <result column="commentNum" property="commentnum" jdbcType="INTEGER" />
     <result column="praiseNum" property="praisenum" jdbcType="INTEGER" />
     <result column="state" property="state" jdbcType="INTEGER" />
-  </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.ajie.dbMapper.pojo.TbComment" extends="BaseResultMap" >
-    <result column="content" property="content" jdbcType="LONGVARBINARY" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -72,28 +70,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, blogId, parentId, createTime, commentNum, praiseNum, state
+    id, blogId, parentId, createTime, content, commentNum, praiseNum, state
   </sql>
-  <sql id="Blob_Column_List" >
-    content
-  </sql>
-  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.ajie.dbMapper.pojo.TbCommentExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from tb_comment
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ajie.dbMapper.pojo.TbCommentExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ajie.dao.pojo.TbCommentExample" >
     select
     <if test="distinct" >
       distinct
@@ -107,11 +86,9 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from tb_comment
     where id = #{id,jdbcType=INTEGER}
   </select>
@@ -119,21 +96,21 @@
     delete from tb_comment
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.ajie.dbMapper.pojo.TbCommentExample" >
+  <delete id="deleteByExample" parameterType="com.ajie.dao.pojo.TbCommentExample" >
     delete from tb_comment
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.ajie.dbMapper.pojo.TbComment" >
+  <insert id="insert" parameterType="com.ajie.dao.pojo.TbComment" >
     insert into tb_comment (id, blogId, parentId, 
-      createTime, commentNum, praiseNum, 
-      state, content)
+      createTime, content, commentNum, 
+      praiseNum, state)
     values (#{id,jdbcType=INTEGER}, #{blogid,jdbcType=INTEGER}, #{parentid,jdbcType=INTEGER}, 
-      #{createtime,jdbcType=TIMESTAMP}, #{commentnum,jdbcType=INTEGER}, #{praisenum,jdbcType=INTEGER}, 
-      #{state,jdbcType=INTEGER}, #{content,jdbcType=LONGVARBINARY})
+      #{createtime,jdbcType=TIMESTAMP}, #{content,jdbcType=VARCHAR}, #{commentnum,jdbcType=INTEGER}, 
+      #{praisenum,jdbcType=INTEGER}, #{state,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.ajie.dbMapper.pojo.TbComment" >
+  <insert id="insertSelective" parameterType="com.ajie.dao.pojo.TbComment" >
     insert into tb_comment
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -148,6 +125,9 @@
       <if test="createtime != null" >
         createTime,
       </if>
+      <if test="content != null" >
+        content,
+      </if>
       <if test="commentnum != null" >
         commentNum,
       </if>
@@ -156,9 +136,6 @@
       </if>
       <if test="state != null" >
         state,
-      </if>
-      <if test="content != null" >
-        content,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -174,6 +151,9 @@
       <if test="createtime != null" >
         #{createtime,jdbcType=TIMESTAMP},
       </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
       <if test="commentnum != null" >
         #{commentnum,jdbcType=INTEGER},
       </if>
@@ -183,12 +163,9 @@
       <if test="state != null" >
         #{state,jdbcType=INTEGER},
       </if>
-      <if test="content != null" >
-        #{content,jdbcType=LONGVARBINARY},
-      </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.ajie.dbMapper.pojo.TbCommentExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.ajie.dao.pojo.TbCommentExample" resultType="java.lang.Integer" >
     select count(*) from tb_comment
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -209,6 +186,9 @@
       <if test="record.createtime != null" >
         createTime = #{record.createtime,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.content != null" >
+        content = #{record.content,jdbcType=VARCHAR},
+      </if>
       <if test="record.commentnum != null" >
         commentNum = #{record.commentnum,jdbcType=INTEGER},
       </if>
@@ -218,24 +198,7 @@
       <if test="record.state != null" >
         state = #{record.state,jdbcType=INTEGER},
       </if>
-      <if test="record.content != null" >
-        content = #{record.content,jdbcType=LONGVARBINARY},
-      </if>
     </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map" >
-    update tb_comment
-    set id = #{record.id,jdbcType=INTEGER},
-      blogId = #{record.blogid,jdbcType=INTEGER},
-      parentId = #{record.parentid,jdbcType=INTEGER},
-      createTime = #{record.createtime,jdbcType=TIMESTAMP},
-      commentNum = #{record.commentnum,jdbcType=INTEGER},
-      praiseNum = #{record.praisenum,jdbcType=INTEGER},
-      state = #{record.state,jdbcType=INTEGER},
-      content = #{record.content,jdbcType=LONGVARBINARY}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -246,6 +209,7 @@
       blogId = #{record.blogid,jdbcType=INTEGER},
       parentId = #{record.parentid,jdbcType=INTEGER},
       createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      content = #{record.content,jdbcType=VARCHAR},
       commentNum = #{record.commentnum,jdbcType=INTEGER},
       praiseNum = #{record.praisenum,jdbcType=INTEGER},
       state = #{record.state,jdbcType=INTEGER}
@@ -253,7 +217,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ajie.dbMapper.pojo.TbComment" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.ajie.dao.pojo.TbComment" >
     update tb_comment
     <set >
       <if test="blogid != null" >
@@ -265,6 +229,9 @@
       <if test="createtime != null" >
         createTime = #{createtime,jdbcType=TIMESTAMP},
       </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
       <if test="commentnum != null" >
         commentNum = #{commentnum,jdbcType=INTEGER},
       </if>
@@ -274,28 +241,15 @@
       <if test="state != null" >
         state = #{state,jdbcType=INTEGER},
       </if>
-      <if test="content != null" >
-        content = #{content,jdbcType=LONGVARBINARY},
-      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ajie.dbMapper.pojo.TbComment" >
+  <update id="updateByPrimaryKey" parameterType="com.ajie.dao.pojo.TbComment" >
     update tb_comment
     set blogId = #{blogid,jdbcType=INTEGER},
       parentId = #{parentid,jdbcType=INTEGER},
       createTime = #{createtime,jdbcType=TIMESTAMP},
-      commentNum = #{commentnum,jdbcType=INTEGER},
-      praiseNum = #{praisenum,jdbcType=INTEGER},
-      state = #{state,jdbcType=INTEGER},
-      content = #{content,jdbcType=LONGVARBINARY}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.ajie.dbMapper.pojo.TbComment" >
-    update tb_comment
-    set blogId = #{blogid,jdbcType=INTEGER},
-      parentId = #{parentid,jdbcType=INTEGER},
-      createTime = #{createtime,jdbcType=TIMESTAMP},
+      content = #{content,jdbcType=VARCHAR},
       commentNum = #{commentnum,jdbcType=INTEGER},
       praiseNum = #{praisenum,jdbcType=INTEGER},
       state = #{state,jdbcType=INTEGER}

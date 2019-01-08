@@ -2,6 +2,8 @@ package com.ajie.dao.pojo;
 
 import java.util.Date;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 public class TbComment {
     private Integer id;
 
@@ -9,15 +11,16 @@ public class TbComment {
 
     private Integer parentid;
 
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date createtime;
+
+    private String content;
 
     private Integer commentnum;
 
     private Integer praisenum;
 
     private Integer state;
-
-    private byte[] content;
 
     public Integer getId() {
         return id;
@@ -51,6 +54,14 @@ public class TbComment {
         this.createtime = createtime;
     }
 
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content == null ? null : content.trim();
+    }
+
     public Integer getCommentnum() {
         return commentnum;
     }
@@ -73,13 +84,5 @@ public class TbComment {
 
     public void setState(Integer state) {
         this.state = state;
-    }
-
-    public byte[] getContent() {
-        return content;
-    }
-
-    public void setContent(byte[] content) {
-        this.content = content;
     }
 }

@@ -2,18 +2,19 @@ package com.ajie.dao.pojo;
 
 import java.util.Date;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 public class TbBlog {
     private Integer id;
 
     private Integer userid;
 
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date createtime;
-
-    private Date lastactive;
 
     private String title;
 
-    private Integer commentnum;
+    private String content;
 
     private Integer praisenum;
 
@@ -25,7 +26,10 @@ public class TbBlog {
 
     private Integer state;
 
-    private byte[] content;
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+    private Date lastmodifydate;
+
+    private Integer commentnum;
 
     public Integer getId() {
         return id;
@@ -51,14 +55,6 @@ public class TbBlog {
         this.createtime = createtime;
     }
 
-    public Date getLastactive() {
-        return lastactive;
-    }
-
-    public void setLastactive(Date lastactive) {
-        this.lastactive = lastactive;
-    }
-
     public String getTitle() {
         return title;
     }
@@ -67,12 +63,12 @@ public class TbBlog {
         this.title = title == null ? null : title.trim();
     }
 
-    public Integer getCommentnum() {
-        return commentnum;
+    public String getContent() {
+        return content;
     }
 
-    public void setCommentnum(Integer commentnum) {
-        this.commentnum = commentnum;
+    public void setContent(String content) {
+        this.content = content == null ? null : content.trim();
     }
 
     public Integer getPraisenum() {
@@ -115,11 +111,19 @@ public class TbBlog {
         this.state = state;
     }
 
-    public byte[] getContent() {
-        return content;
+    public Date getLastmodifydate() {
+        return lastmodifydate;
     }
 
-    public void setContent(byte[] content) {
-        this.content = content;
+    public void setLastmodifydate(Date lastmodifydate) {
+        this.lastmodifydate = lastmodifydate;
+    }
+
+    public Integer getCommentnum() {
+        return commentnum;
+    }
+
+    public void setCommentnum(Integer commentnum) {
+        this.commentnum = commentnum;
     }
 }

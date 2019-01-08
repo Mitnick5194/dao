@@ -33,9 +33,9 @@ create table tb_blog(
 	id int(11) not null auto_increment,
 	userId int(11) not null,
 	createTime timestamp not null comment '创建时间',
-	lastActive timestamp not null comment '最后活跃时间',
+	lastModifyDate timestamp not null comment '最后修改时间',
 	title varchar(128) not null comment '标题',
-	content BLOB not null comment '内容',
+	content varchar(5000) not null comment '内容',
 	commentNum int(11) default 0 comment '评论数',
 	praiseNum int(11) default 0 comment '点赞数',
 	collectNum int(11) default 0  comment '收藏数',
@@ -53,12 +53,12 @@ create table tb_comment(
 	blogId int(11) not null comment '评论的博文',
 	parentId int(11) default null comment '评论所属的父评论，为空表示这是直接评论文章的评论',
 	createTime timestamp not null comment '创建时间',
-	content BLOB not null comment '内容',
+	content varchar(500) not null comment '内容',
 	commentNum int(11) default 0 comment '评论数',
 	praiseNum int(11) default 0 comment '点赞数',
 	state int(11) default 0 comment '状态',
 	primary key (id)
-) engine=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=UTF8 COMMENT='博文';
+) engine=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=UTF8 COMMENT='评论';
 
 
 
