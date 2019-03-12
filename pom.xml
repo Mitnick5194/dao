@@ -37,20 +37,29 @@
 	</dependencies>
 
 	<build>
-		<plugins>
+		<!-- <plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
 				<executions>
 					<execution>
 						<id>attach-sources</id>
-						<!--很奇怪 这里放开了 项目有红叉，注释了 又打包不成功/ -->
+						很奇怪 这里放开了 项目有红叉，注释了 又打包不成功/
 						<goals>
 							<goal>jar</goal>
 						</goals>
 					</execution>
 				</executions>
 			</plugin>
-		</plugins>
+		</plugins> --><resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.properties</include>
+					<include>**/*.xml</include>
+				</includes>
+				<filtering>false</filtering>
+			</resource>
+		</resources>
 	</build>
 </project>

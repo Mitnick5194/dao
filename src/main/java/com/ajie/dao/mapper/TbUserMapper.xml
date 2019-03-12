@@ -108,7 +108,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.ajie.dao.pojo.TbUser" >
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.ajie.dao.pojo.TbUser" >
     insert into tb_user (id, name, password, 
       nickName, synopsis, sex, 
       phone, email, createTime, 

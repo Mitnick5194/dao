@@ -233,6 +233,136 @@ public class TbLabelExample {
             addCriterion("name not between", value1, value2, "name");
             return (Criteria) this;
         }
+
+        public Criteria andBlogidsIsNull() {
+            addCriterion("blogids is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBlogidsIsNotNull() {
+            addCriterion("blogids is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBlogidsEqualTo(String value) {
+            addCriterion("blogids =", value, "blogids");
+            return (Criteria) this;
+        }
+
+        public Criteria andBlogidsNotEqualTo(String value) {
+            addCriterion("blogids <>", value, "blogids");
+            return (Criteria) this;
+        }
+
+        public Criteria andBlogidsGreaterThan(String value) {
+            addCriterion("blogids >", value, "blogids");
+            return (Criteria) this;
+        }
+
+        public Criteria andBlogidsGreaterThanOrEqualTo(String value) {
+            addCriterion("blogids >=", value, "blogids");
+            return (Criteria) this;
+        }
+
+        public Criteria andBlogidsLessThan(String value) {
+            addCriterion("blogids <", value, "blogids");
+            return (Criteria) this;
+        }
+
+        public Criteria andBlogidsLessThanOrEqualTo(String value) {
+            addCriterion("blogids <=", value, "blogids");
+            return (Criteria) this;
+        }
+
+        public Criteria andBlogidsLike(String value) {
+            addCriterion("blogids like", value, "blogids");
+            return (Criteria) this;
+        }
+
+        public Criteria andBlogidsNotLike(String value) {
+            addCriterion("blogids not like", value, "blogids");
+            return (Criteria) this;
+        }
+
+        public Criteria andBlogidsIn(List<String> values) {
+            addCriterion("blogids in", values, "blogids");
+            return (Criteria) this;
+        }
+
+        public Criteria andBlogidsNotIn(List<String> values) {
+            addCriterion("blogids not in", values, "blogids");
+            return (Criteria) this;
+        }
+
+        public Criteria andBlogidsBetween(String value1, String value2) {
+            addCriterion("blogids between", value1, value2, "blogids");
+            return (Criteria) this;
+        }
+
+        public Criteria andBlogidsNotBetween(String value1, String value2) {
+            addCriterion("blogids not between", value1, value2, "blogids");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkIsNull() {
+            addCriterion("mark is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkIsNotNull() {
+            addCriterion("mark is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkEqualTo(Integer value) {
+            addCriterion("mark =", value, "mark");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkNotEqualTo(Integer value) {
+            addCriterion("mark <>", value, "mark");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkGreaterThan(Integer value) {
+            addCriterion("mark >", value, "mark");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkGreaterThanOrEqualTo(Integer value) {
+            addCriterion("mark >=", value, "mark");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkLessThan(Integer value) {
+            addCriterion("mark <", value, "mark");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkLessThanOrEqualTo(Integer value) {
+            addCriterion("mark <=", value, "mark");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkIn(List<Integer> values) {
+            addCriterion("mark in", values, "mark");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkNotIn(List<Integer> values) {
+            addCriterion("mark not in", values, "mark");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkBetween(Integer value1, Integer value2) {
+            addCriterion("mark between", value1, value2, "mark");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkNotBetween(Integer value1, Integer value2) {
+            addCriterion("mark not between", value1, value2, "mark");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

@@ -2,87 +2,119 @@ package com.ajie.dao.pojo;
 
 import java.util.Date;
 
-import com.alibaba.fastjson.annotation.JSONField;
-
 public class TbComment {
-    private Integer id;
+	private Integer id;
 
-    private Integer blogid;
+	private Integer blogid;
 
-    private Integer parentid;
+	private String userheader;
 
-    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
-    private Date createtime;
+	private String username;
 
-    private String content;
+	private String usernickname;
 
-    private Integer commentnum;
+	private Integer userid;
 
-    private Integer praisenum;
+	private Date createtime;
 
-    private Integer state;
+	private String content;
 
-    public Integer getId() {
-        return id;
-    }
+	private Integer mark;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public TbComment() {
 
-    public Integer getBlogid() {
-        return blogid;
-    }
+	}
 
-    public void setBlogid(Integer blogid) {
-        this.blogid = blogid;
-    }
+	public TbComment(String content, int blogId, int userId) {
+		this.content = content;
+		this.blogid = blogId;
+		this.userid = userId;
+		this.createtime = new Date();
+		this.mark = 1;
 
-    public Integer getParentid() {
-        return parentid;
-    }
+	}
 
-    public void setParentid(Integer parentid) {
-        this.parentid = parentid;
-    }
+	public TbComment(String content, int blogId, TbUser user) {
+		this.content = content;
+		this.blogid = blogId;
+		this.userid = user.getId();
+		this.userheader = user.getHeader();
+		this.username = user.getName();
+		this.usernickname = user.getNickname();
+		this.createtime = new Date();
+		this.mark = 1;
 
-    public Date getCreatetime() {
-        return createtime;
-    }
+	}
 
-    public void setCreatetime(Date createtime) {
-        this.createtime = createtime;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public String getContent() {
-        return content;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public void setContent(String content) {
-        this.content = content == null ? null : content.trim();
-    }
+	public Integer getBlogid() {
+		return blogid;
+	}
 
-    public Integer getCommentnum() {
-        return commentnum;
-    }
+	public void setBlogid(Integer blogid) {
+		this.blogid = blogid;
+	}
 
-    public void setCommentnum(Integer commentnum) {
-        this.commentnum = commentnum;
-    }
+	public String getUserheader() {
+		return userheader;
+	}
 
-    public Integer getPraisenum() {
-        return praisenum;
-    }
+	public void setUserheader(String userheader) {
+		this.userheader = userheader == null ? null : userheader.trim();
+	}
 
-    public void setPraisenum(Integer praisenum) {
-        this.praisenum = praisenum;
-    }
+	public String getUsername() {
+		return username;
+	}
 
-    public Integer getState() {
-        return state;
-    }
+	public void setUsername(String username) {
+		this.username = username == null ? null : username.trim();
+	}
 
-    public void setState(Integer state) {
-        this.state = state;
-    }
+	public String getUsernickname() {
+		return usernickname;
+	}
+
+	public void setUsernickname(String usernickname) {
+		this.usernickname = usernickname == null ? null : usernickname.trim();
+	}
+
+	public Integer getUserid() {
+		return userid;
+	}
+
+	public void setUserid(Integer userid) {
+		this.userid = userid;
+	}
+
+	public Date getCreatetime() {
+		return createtime;
+	}
+
+	public void setCreatetime(Date createtime) {
+		this.createtime = createtime;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content == null ? null : content.trim();
+	}
+
+	public Integer getMark() {
+		return mark;
+	}
+
+	public void setMark(Integer mark) {
+		this.mark = mark;
+	}
 }

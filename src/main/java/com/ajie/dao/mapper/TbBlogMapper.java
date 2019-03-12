@@ -27,4 +27,35 @@ public interface TbBlogMapper {
     int updateByPrimaryKeySelective(TbBlog record);
 
     int updateByPrimaryKey(TbBlog record);
+    
+    int getBlogCount();
+
+	/**
+	 * 更新博客的阅读数和评论数
+	 * 
+	 * @param blogId
+	 * @param commentCount
+	 * @param readNum
+	 * @return
+	 */
+	int updateBlogCRCount(@Param("id") int id, @Param("commentCount") int commentCount,
+			@Param("readNum") int readNum);
+
+	/**
+	 * 更新博客状态
+	 * 
+	 * @param id
+	 * @param mark
+	 * @return
+	 */
+	void updateBlogMark(@Param("id") int id, @Param("userId") int userId, @Param("mark") int mark);
+
+	/**
+	 * 批量更新指定用户的博客状态
+	 * 
+	 * @param id
+	 * @param mark
+	 * @return
+	 */
+	void updateBlogsMark(@Param("userId") int userId, @Param("mark") int mark);
 }
