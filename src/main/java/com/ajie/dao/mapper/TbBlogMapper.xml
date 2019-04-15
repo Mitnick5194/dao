@@ -372,6 +372,11 @@
    		select count(*) from tb_blog
   </select>
   
+   <!-- 获取用户博客条数 -->
+  <select id="getUserBlogCount" resultType="int">
+   		select count(*) from tb_blog where userId = #{userId}
+  </select>
+  
   <!-- 更新博客的评论数和阅读数 -->
   <update id="updateBlogCRCount">
 	    update tb_blog
@@ -389,4 +394,12 @@
   <update id="updateBlogsMark">
 		update tb_blog set mark = #{mark} where userId=#{userId}
   </update>
+  
+  <!-- 查询指定状态的博客 -->
+  <select id="selectBlogsByState" resultMap="BaseResultMap">
+  		select * from tb_blog where <if test="userId != 0">userId = #{userId} and</if>mark in
+  		<foreach item="item" index="index" collection="marks" open="(" separator="," close=")">  
+　　　	#{item}  
+　　		</foreach>  
+  </select>
 </mapper>

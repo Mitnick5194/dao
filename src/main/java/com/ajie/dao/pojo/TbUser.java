@@ -15,6 +15,7 @@ public class TbUser {
 
 	private String synopsis;
 
+	/** 枚举 1男2女0保密 */
 	private String sex;
 
 	private String phone;
@@ -61,9 +62,9 @@ public class TbUser {
 		this.name = name == null ? null : name.trim();
 	}
 
-	public String getPassword() {
+	/*public String getPassword() {
 		return password;
-	}
+	}*/
 
 	public void setPassword(String password) {
 		this.password = password == null ? null : password.trim();
