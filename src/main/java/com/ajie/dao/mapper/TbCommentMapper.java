@@ -31,4 +31,22 @@ public interface TbCommentMapper {
 	int updateByPrimaryKey(TbComment record);
 
 	int getBlogCommentCount(int blogId);
+	
+	/**
+	 * 更新评论状态
+	 * 
+	 * @param id
+	 * @param mark
+	 * @return
+	 */
+	void updateCommentMark(@Param("id") int id, @Param("userId") int userId, @Param("mark") int mark);
+
+	/**
+	 * 批量更新指定用户的博客状态
+	 * 
+	 * @param id
+	 * @param mark
+	 * @return
+	 */
+	void updateCommentsMark(@Param("userId") int userId, @Param("mark") int mark);
 }

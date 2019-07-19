@@ -277,4 +277,14 @@
   <select id="getBlogCommentCount" resultType="int">
    		select count(*) from tb_comment where blogId = #{blogId}
   </select>
+  
+    <!-- 更新评论的状态 -->
+  <update id="updateCommentMark">
+		update tb_comment set mark = #{mark} where id=#{id} and userId=#{userId}
+  </update>
+  
+   <!-- 批量更新指定用户博客的状态 -->
+  <update id="updateCommentsMark">
+		update tb_blog set mark = #{mark} where userId=#{userId}
+  </update>
 </mapper>
