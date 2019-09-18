@@ -31,18 +31,28 @@ public interface TbCommentMapper {
 	int updateByPrimaryKey(TbComment record);
 
 	int getBlogCommentCount(int blogId);
-	
+
 	/**
-	 * 更新评论状态
+	 * 更新评论状态，接口不应该关心业务状态，判断是不是本人操作在接口实现里写，不应在这里加
 	 * 
 	 * @param id
 	 * @param mark
 	 * @return
 	 */
-	void updateCommentMark(@Param("id") int id, @Param("userId") int userId, @Param("mark") int mark);
+	void updateCommentMark(@Param("id") int id, @Param("mark") int mark);
 
 	/**
-	 * 批量更新指定用户的博客状态
+	 * 批量更新指定博客的评论状态
+	 * 
+	 * @param id
+	 * @param mark
+	 * @return
+	 */
+	void updateBlogCommentsMark(@Param("blogId") int userId,
+			@Param("mark") int mark);
+
+	/**
+	 * 批量更新指定用户的评论状态
 	 * 
 	 * @param id
 	 * @param mark

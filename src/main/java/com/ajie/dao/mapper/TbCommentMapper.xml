@@ -280,11 +280,16 @@
   
     <!-- 更新评论的状态 -->
   <update id="updateCommentMark">
-		update tb_comment set mark = #{mark} where id=#{id} and userId=#{userId}
+		update tb_comment set mark = #{mark} where id=#{id}
+  </update>
+  
+   <!-- 批量更新指定博客的状态 -->
+  <update id="updateBlogCommentsMark">
+		update tb_comment set mark = #{mark} where blogId=#{blogId}
   </update>
   
    <!-- 批量更新指定用户博客的状态 -->
   <update id="updateCommentsMark">
-		update tb_blog set mark = #{mark} where userId=#{userId}
+		update tb_comment set mark = #{mark} where userId=#{userId}
   </update>
 </mapper>

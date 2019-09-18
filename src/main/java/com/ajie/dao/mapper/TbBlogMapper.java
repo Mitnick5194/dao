@@ -23,11 +23,21 @@ public interface TbBlogMapper {
 	int updateByExampleSelective(@Param("record") TbBlog record,
 			@Param("example") TbBlogExample example);
 
-	int updateByExample(@Param("record") TbBlog record, @Param("example") TbBlogExample example);
+	int updateByExample(@Param("record") TbBlog record,
+			@Param("example") TbBlogExample example);
 
 	int updateByPrimaryKeySelective(TbBlog record);
 
 	int updateByPrimaryKey(TbBlog record);
+
+	/**
+	 * 更新传入的非空字段，和updateByPrimaryKeySelective相似，多个user判断
+	 * 
+	 * @param blog
+	 * @param userId
+	 * @return
+	 */
+	int updatePartByPrimaryKey(TbBlog blog);
 
 	/**
 	 * 获取所有博客的条数
@@ -52,22 +62,25 @@ public interface TbBlogMapper {
 	 * @param readNum
 	 * @return
 	 */
-	int updateBlogCRCount(@Param("id") int id, @Param("commentCount") int commentCount,
+	int updateBlogCRCount(@Param("id") int id,
+			@Param("commentCount") int commentCount,
 			@Param("readNum") int readNum);
 
 	/**
-	 * 更新博客状态
+	 * 更新博客状态 ，接口不应该关心业务状态，判断是不是本人操作在接口实现里写，不应在这里加
 	 * 
 	 * @param id
 	 * @param mark
 	 * @return
 	 */
-	void updateBlogMark(@Param("id") int id, @Param("userId") int userId, @Param("mark") int mark);
+	void updateBlogMark(@Param("id") int id, @Param("userId") int userId,
+			@Param("mark") int mark);
 
 	/**
 	 * 批量更新指定用户的博客状态
 	 * 
-	 * @param id
+	 * @param userId
+	 *            需要更新的用户id
 	 * @param mark
 	 * @return
 	 */
@@ -80,5 +93,12 @@ public interface TbBlogMapper {
 	 * @param marks
 	 * @return
 	 */
-	List<TbBlog> selectBlogsByState(@Param("userId") int userId, @Param("marks") List<Integer> marks);
+	List<TbBlog> selectBlogsByState(@Param("marks") List<Integer> marks);
+
+	/**
+	 * 查询博客的标签字串，同步时使用
+	 * 
+	 * @return
+	 */
+	List<String> selectBlogLabels();
 }

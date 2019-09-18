@@ -367,6 +367,52 @@
       mark = #{mark,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <!-- 更新博客，且userid、createTime不能修改 -->
+  <update id="updatePartByPrimaryKey" parameterType="com.ajie.dao.pojo.TbBlog" >
+    update tb_blog
+    <set >
+      <if test="userheader != null" >
+        userHeader = #{userheader,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        userName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="usernickname != null" >
+        userNickName = #{usernickname,jdbcType=VARCHAR},
+      </if>
+      <if test="lastmodifydate != null" >
+        lastModifyDate = #{lastmodifydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="commentnum != null" >
+        commentNum = #{commentnum,jdbcType=INTEGER},
+      </if>
+      <if test="praisenum != null" >
+        praiseNum = #{praisenum,jdbcType=INTEGER},
+      </if>
+      <if test="collectnum != null" >
+        collectNum = #{collectnum,jdbcType=INTEGER},
+      </if>
+      <if test="readnum != null" >
+        readNum = #{readnum,jdbcType=INTEGER},
+      </if>
+      <if test="labelstrs != null" >
+        labelStrs = #{labelstrs,jdbcType=VARCHAR},
+      </if>
+      <if test="mark != null" >
+        mark = #{mark,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
   <!-- 获取所有博客条数 -->
   <select id="getBlogCount" resultType="int">
    		select count(*) from tb_blog
@@ -387,7 +433,7 @@
   
   <!-- 更新博客的状态 -->
   <update id="updateBlogMark">
-		update tb_blog set mark = #{mark} where id=#{id} and userId=#{userId}
+		update tb_blog set mark = #{mark} where id=#{id}
   </update>
   
    <!-- 批量更新指定用户博客的状态 -->
@@ -401,5 +447,10 @@
   		<foreach item="item" index="index" collection="marks" open="(" separator="," close=")">  
 　　　	#{item}  
 　　		</foreach>  
+  </select>
+  
+    <!-- 查询指定状态的博客 -->
+  <select id="selectBlogLabels" resultType="java.lang.String">
+  		 select labelStrs from tb_blog;
   </select>
 </mapper>

@@ -2,6 +2,8 @@ package com.ajie.dao.pojo;
 
 import java.util.Date;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 public class TbBlog {
 	private Integer id;
 
@@ -12,9 +14,9 @@ public class TbBlog {
 	private String username;
 
 	private String usernickname;
-
+	@JSONField(format = "yyyy-MM-dd HH:mm:ss")
 	private Date createtime;
-
+	@JSONField(format = "yyyy-MM-dd HH:mm:ss")
 	private Date lastmodifydate;
 
 	private String title;
