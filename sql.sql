@@ -66,6 +66,23 @@ create table tb_comment(
 	primary key (id)
 ) engine=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=UTF8 COMMENT='评论';
 
+create table tb_config(
+	id varchar(64) not null,
+	version varchar(64),
+	note varchar(256),
+	modifyCount int ,
+	config text,
+	createTime timestamp not null comment '创建时间',
+	lastModifyTime timestamp not null comment '最后修改时间',
+	primary key (id)
+) engine=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=UTF8;
+
+create table tb_branceConfig(
+	id varchar(64) not null,
+	configs text,
+	primary key (id)
+) engine=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=UTF8;
+
 
 
 
