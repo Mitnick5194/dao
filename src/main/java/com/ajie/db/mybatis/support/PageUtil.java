@@ -23,5 +23,4 @@ public class PageUtil {
 	public static <T> PageData<T> wrapPageData(List<T> data) {
 		return (PageData<T>) data;
 	}
-
 }

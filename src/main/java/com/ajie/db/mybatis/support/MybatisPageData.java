@@ -36,7 +36,7 @@ public class MybatisPageData<T> extends AbstractMybatisPageData<T> {
 	@Override
 	protected void loadData() {
 		try {
-			PageHelper.startPage(1, pageSize);
+			PageHelper.startPage(page+1, pageSize);
 			@SuppressWarnings("unchecked")
 			List<T> result = (List<T>) mapperTargetInfo.getMethod().invoke(
 					mapperTargetInfo.getProxy(), mapperTargetInfo.getArgs());
