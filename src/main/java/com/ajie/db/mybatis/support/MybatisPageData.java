@@ -29,14 +29,10 @@ public class MybatisPageData<T> extends AbstractMybatisPageData<T> {
 		this.mapperTargetInfo = mapperTargetInfo;
 	}
 
-	protected MybatisPageData(int count) {
-		super(count);
-	}
-
 	@Override
 	protected void loadData() {
 		try {
-			PageHelper.startPage(page+1, pageSize);
+			PageHelper.startPage(page, pageSize);
 			@SuppressWarnings("unchecked")
 			List<T> result = (List<T>) mapperTargetInfo.getMethod().invoke(
 					mapperTargetInfo.getProxy(), mapperTargetInfo.getArgs());

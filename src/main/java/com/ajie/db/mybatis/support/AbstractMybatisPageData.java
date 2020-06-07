@@ -50,6 +50,7 @@ public abstract class AbstractMybatisPageData<T> extends ArrayList<T> implements
 		int size = super.size();
 		if (size == 0 || pos > size - 1) {
 			loadData();
+			pos = 0;// 数组被清空了从0开始读
 		}
 		return super.get(pos);
 	}
@@ -106,10 +107,14 @@ public abstract class AbstractMybatisPageData<T> extends ArrayList<T> implements
 		if (page <= 0) {
 			return false;
 		}
-		if (page > pageCount) {
+		if (page > pageCount
+				|| (pageSize > 0 && (page > (int) Math
+						.ceil(((double) count / (double) pageSize))))) {
 			return false;
 		}
-		pos = pageSize * (page - 1) - 1;// next的时候在向前走一步
+		// pos = pageSize * (page - 1) - 1;// next的时候在向前走一步
+		pos = 0;// 注释上面，每次翻页清空上次的数据，所以从0开始读取
+		super.clear();// ：防止内存爆了
 		this.page = page;
 		return true;
 	}
@@ -123,8 +128,7 @@ public abstract class AbstractMybatisPageData<T> extends ArrayList<T> implements
 			page = 1;// 默认第一页
 		}
 		// pos+1是否落在当前页
-		return (pos + 1) >= pageSize * (page - 1)
-				&& (pos + 1) < pageSize * page && (pos + 1) < count;
+		return pos >= 0 && pos < pageSize && count > 0;
 	}
 
 	@Override
